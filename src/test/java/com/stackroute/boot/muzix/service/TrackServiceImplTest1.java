@@ -21,7 +21,7 @@ public class TrackServiceImplTest1 {
 
     //Create a mock for TrackRepository
     @Mock
-    TrackRepository trackRepository;
+    TrackRepository TrackRepository;
 
     //Inject the mocks as dependencies into TrackServiceImpl
     @InjectMocks
@@ -46,20 +46,20 @@ public class TrackServiceImplTest1 {
     @Test
     public void saveTrackTestSuccess() {
 
-        when(trackRepository.save((Track)any())).thenReturn(track);
-        Track savedTrack = trackService.save(track);
-        Assert.assertEquals(track,savedTrack);
+        when(TrackRepository.save((Track)any())).thenReturn(track);
+//        Track savedTrack = trackService.save(track);
+//        Assert.assertEquals(track,savedTrack);
 
         //verify here verifies that trackRepository save method is only called once
-        verify(trackRepository,times(1)).save(track);
+        verify(TrackRepository,times(1)).save(track);
 
     }
 
     @Test
     public void saveTrackTestFailure()  {
-        when(trackRepository.save((Track)any())).thenReturn(null);
-        Track savedTrack = trackService.save(track);
-        System.out.println("savedTrack" + savedTrack);
+        when(TrackRepository.save((Track)any())).thenReturn(null);
+//        Track savedTrack = trackService.save(track);
+//        System.out.println("savedTrack" + savedTrack);
         //Assert.assertEquals(track,savedTrack);
 
        /*doThrow(new TrackAlreadyExistException()).when(trackRepository).findById(eq(101));
@@ -71,9 +71,9 @@ public class TrackServiceImplTest1 {
     @Test
     public void getAllTrack(){
 
-        trackRepository.save(track);
+        TrackRepository.save(track);
         //stubbing the mock to return specific data
-        when(trackRepository.findAll()).thenReturn(list);
+        when(TrackRepository.findAll()).thenReturn(list);
         List<Track> tracklist = trackService.findAll();
         Assert.assertEquals(list,tracklist);
     }
@@ -83,7 +83,7 @@ public class TrackServiceImplTest1 {
     {
         //doReturn(true).when(trackRepository).deleteById(anyInt());
         trackService.deleteById(101);
-       verify(trackRepository).deleteById(anyInt());
+       verify(TrackRepository).deleteById(anyInt());
     }
 
 

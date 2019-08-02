@@ -1,6 +1,8 @@
 package com.stackroute.boot.muzix;
 
+import com.stackroute.boot.muzix.model.Track;
 import org.junit.Test;
+import org.mockito.Spy;
 
 import java.util.List;
 
@@ -11,9 +13,22 @@ public class DemoTest {
     public void test1()
     {
         List mockedList = mock(List.class);
+        List spiedList=spy(List.class);
+        Track t1=mock(Track.class);
+        t1.setId(1);
+        Track track=spy(Track.class);
+        System.out.println(t1.getId());
+        //track.setId(1);
+        //System.out.println(track.getId());
 
         //using mock object
         mockedList.add("one");
+        spiedList.add("three");
+        when(mockedList.get(0)).thenReturn("agha");
+        System.out.println("hi");
+        System.out.println(mockedList.get(0));
+        System.out.println("hello");
+        System.out.println(spiedList.get(0));
         mockedList.clear();
 
         //verification
@@ -40,7 +55,7 @@ public class DemoTest {
         System.out.println(mockedList.get(999));
 
         //you can also verify using an argument matcher
-        verify(mockedList).get(anyInt());
+        verify(mockedList,times(5)).get(anyInt());
 
         //argument matchers can also be written as Java 8 Lambdas
         //verify(mockedList).add(argThat(someString -> someString.length() > 5));

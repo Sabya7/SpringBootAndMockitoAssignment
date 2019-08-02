@@ -2,20 +2,22 @@ package com.stackroute.boot.muzix.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 
-@Entity
+
+@Document(collection = "track")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Track {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column
+
     private String name;
-    @Column
+
     private String comment;
 }
